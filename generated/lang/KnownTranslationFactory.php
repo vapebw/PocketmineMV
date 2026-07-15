@@ -2341,6 +2341,10 @@ final class KnownTranslationFactory{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_PERMISSION_COMMAND_BAN_PLAYER, []);
 	}
 
+	public static function pocketmine_permission_command_checkperm() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_PERMISSION_COMMAND_CHECKPERM, []);
+	}
+
 	public static function pocketmine_permission_command_clear_other() : Translatable{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_PERMISSION_COMMAND_CLEAR_OTHER, []);
 	}
@@ -2415,6 +2419,10 @@ final class KnownTranslationFactory{
 
 	public static function pocketmine_permission_command_list() : Translatable{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_PERMISSION_COMMAND_LIST, []);
+	}
+
+	public static function pocketmine_permission_command_listperms() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_PERMISSION_COMMAND_LISTPERMS, []);
 	}
 
 	public static function pocketmine_permission_command_me() : Translatable{

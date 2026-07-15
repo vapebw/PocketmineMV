@@ -338,6 +338,9 @@ final class KnownTranslationKeys{
 	public const POCKETMINE_COMMAND_BAN_IP_DESCRIPTION = "pocketmine.command.ban.ip.description";
 	public const POCKETMINE_COMMAND_BAN_PLAYER_DESCRIPTION = "pocketmine.command.ban.player.description";
 	public const POCKETMINE_COMMAND_BANLIST_DESCRIPTION = "pocketmine.command.banlist.description";
+	public const POCKETMINE_COMMAND_CHECKPERM_DESCRIPTION = "pocketmine.command.checkperm.description";
+	public const POCKETMINE_COMMAND_CHECKPERM_SUCCESS = "pocketmine.command.checkperm.success";
+	public const POCKETMINE_COMMAND_CHECKPERM_USAGE = "pocketmine.command.checkperm.usage";
 	public const POCKETMINE_COMMAND_CLEAR_DESCRIPTION = "pocketmine.command.clear.description";
 	public const POCKETMINE_COMMAND_CLEAR_USAGE = "pocketmine.command.clear.usage";
 	public const POCKETMINE_COMMAND_DEFAULTGAMEMODE_DESCRIPTION = "pocketmine.command.defaultgamemode.description";
@@ -369,6 +372,8 @@ final class KnownTranslationKeys{
 	public const POCKETMINE_COMMAND_KILL_DESCRIPTION = "pocketmine.command.kill.description";
 	public const POCKETMINE_COMMAND_KILL_USAGE = "pocketmine.command.kill.usage";
 	public const POCKETMINE_COMMAND_LIST_DESCRIPTION = "pocketmine.command.list.description";
+	public const POCKETMINE_COMMAND_LISTPERMS_DESCRIPTION = "pocketmine.command.listperms.description";
+	public const POCKETMINE_COMMAND_LISTPERMS_USAGE = "pocketmine.command.listperms.usage";
 	public const POCKETMINE_COMMAND_ME_DESCRIPTION = "pocketmine.command.me.description";
 	public const POCKETMINE_COMMAND_NOTFOUND = "pocketmine.command.notFound";
 	public const POCKETMINE_COMMAND_OP_DESCRIPTION = "pocketmine.command.op.description";

@@ -1494,6 +1494,22 @@ final class KnownTranslationFactory{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_BANLIST_DESCRIPTION, []);
 	}
 
+	public static function pocketmine_command_checkperm_description() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_CHECKPERM_DESCRIPTION, []);
+	}
+
+	public static function pocketmine_command_checkperm_success(Translatable|string $param0, Translatable|string $param1, Translatable|string $param2) : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_CHECKPERM_SUCCESS, [
+			0 => $param0,
+			1 => $param1,
+			2 => $param2,
+		]);
+	}
+
+	public static function pocketmine_command_checkperm_usage() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_CHECKPERM_USAGE, []);
+	}
+
 	public static function pocketmine_command_clear_description() : Translatable{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_CLEAR_DESCRIPTION, []);
 	}
@@ -1640,6 +1656,14 @@ final class KnownTranslationFactory{
 
 	public static function pocketmine_command_list_description() : Translatable{
 		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_LIST_DESCRIPTION, []);
+	}
+
+	public static function pocketmine_command_listperms_description() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_LISTPERMS_DESCRIPTION, []);
+	}
+
+	public static function pocketmine_command_listperms_usage() : Translatable{
+		return new Translatable(KnownTranslationKeys::POCKETMINE_COMMAND_LISTPERMS_USAGE, []);
 	}
 
 	public static function pocketmine_command_me_description() : Translatable{

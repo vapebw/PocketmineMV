@@ -204,6 +204,12 @@ class NetworkSession{
 	private ?InventoryManager $invManager = null;
 
 	/**
+	 * @var true[][]
+	 * @phpstan-var array<int, array<int, true>>
+	 */
+	private array $usedChunkCacheReferences = [];
+
+	/**
 	 * @var \Closure[]|ObjectSet
 	 * @phpstan-var ObjectSet<\Closure() : void>
 	 */
@@ -1322,9 +1328,17 @@ class NetworkSession{
 	 * @param \Closure $onCompletion To be called when chunk sending has completed.
 	 * @phpstan-param \Closure() : void $onCompletion
 	 */
+	// credits to remminiscent (https://github.com/altayofficial/Altay/pull/14/changes)
 	public function startUsingChunk(int $chunkX, int $chunkZ, \Closure $onCompletion) : void{
 		$world = $this->player->getLocation()->getWorld();
-		$promiseOrPacket = ChunkCache::getInstance($world, $this->compressor)->request($chunkX, $chunkZ, $this->getTypeConverter());
+		$chunkCache = ChunkCache::getInstance($world, $this->compressor);
+		$worldId = $world->getId();
+		$chunkHash = World::chunkHash($chunkX, $chunkZ);
+		if(!isset($this->usedChunkCacheReferences[$worldId][$chunkHash])){
+			$this->usedChunkCacheReferences[$worldId][$chunkHash] = true;
+			$chunkCache->retain($chunkX, $chunkZ);
+		}
+		$promiseOrPacket = $chunkCache->request($chunkX, $chunkZ, $this->getTypeConverter());
 		if(is_string($promiseOrPacket)){
 			$this->sendChunkPacket($promiseOrPacket, $onCompletion, $world);
 			return;
@@ -1352,8 +1366,21 @@ class NetworkSession{
 		);
 	}
 
-	public function stopUsingChunk(int $chunkX, int $chunkZ) : void{
-
+	// credits to remminiscent (https://github.com/altayofficial/Altay/pull/14/changes)
+	public function stopUsingChunk(int $chunkX, int $chunkZ, ?World $world = null) : void{
+		$world ??= $this->player?->getLocation()->getWorld();
+		if($world === null){
+			return;
+		}
+		$worldId = $world->getId();
+		$chunkHash = World::chunkHash($chunkX, $chunkZ);
+		if(isset($this->usedChunkCacheReferences[$worldId][$chunkHash])){
+			unset($this->usedChunkCacheReferences[$worldId][$chunkHash]);
+			if(count($this->usedChunkCacheReferences[$worldId]) === 0){
+				unset($this->usedChunkCacheReferences[$worldId]);
+			}
+			ChunkCache::getInstance($world, $this->compressor)->release($chunkX, $chunkZ);
+		}
 	}
 
 	public function onEnterWorld() : void{

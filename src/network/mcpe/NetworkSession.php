@@ -103,6 +103,8 @@ use pocketmine\command\overload\PlayerArgumentParser;
 use pocketmine\command\overload\PlayerOrSelfArgumentParser;
 use pocketmine\command\overload\Vector3ArgumentParser;
 use pocketmine\command\overload\GreedyStringArgumentParser;
+use pocketmine\command\overload\ItemArgumentParser;
+use pocketmine\item\StringToItemParser;
 use pocketmine\network\mcpe\protocol\types\command\CommandHardEnum;
 use pocketmine\network\mcpe\protocol\types\command\CommandOverload;
 use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
@@ -1308,6 +1310,15 @@ class NetworkSession{
 
 		if($parser instanceof DynamicEnumArgumentParser){
 			return CommandParameter::enum($name, new CommandHardEnum(ucfirst($label) . ucfirst($name) . "Enum", $parser->getValues()), 0, $optional);
+		}
+
+		// with this item icon should appear in the tab completion menu or atleast thats what i think
+		if($parser instanceof ItemArgumentParser){
+			$itemIds = [];
+			foreach($this->typeConverter->getItemTypeDictionary()->getEntries() as $entry){
+				$itemIds[] = $entry->getStringId();
+			}
+			return CommandParameter::enum($name, new CommandHardEnum("Item", $itemIds), 0, $optional);
 		}
 
 		$type = match(true){

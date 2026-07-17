@@ -99,6 +99,7 @@ final class YmlServerProperties{
 	public const PLUGINS_LEGACY_DATA_DIR = 'plugins.legacy-data-dir';
 	public const SETTINGS = 'settings';
 	public const SETTINGS_ASYNC_WORKERS = 'settings.async-workers';
+	public const SETTINGS_DEFAULT_DISABLE_VIBRANT_VISUALS = 'settings.default-disable-vibrant-visuals';
 	public const SETTINGS_ENABLE_DEV_BUILDS = 'settings.enable-dev-builds';
 	public const SETTINGS_ENABLE_PROFILING = 'settings.enable-profiling';
 	public const SETTINGS_FORCE_LANGUAGE = 'settings.force-language';
